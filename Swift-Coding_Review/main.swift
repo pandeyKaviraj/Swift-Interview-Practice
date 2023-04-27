@@ -78,3 +78,27 @@ catch Root.noRoot {
     let formatted = String(format: "Square root of \(num) is : %.4f", answer)
     print(formatted)
 }
+
+// Important section to remember property observers willset, didset, newValue, oldValue
+
+struct App {
+    var contacts = [String]() {
+        
+        // before the property changed
+        willSet {
+            print("Current value is: \(contacts)")
+            print("New value will be: \(newValue)")
+        }
+
+        // property just changed
+        didSet {
+            print("There are now \(contacts.count) contacts.")
+            print("Old value was \(oldValue)")
+        }
+    }
+}
+
+var app = App()
+app.contacts.append("Adrian E")
+app.contacts.append("Allen W")
+app.contacts.append("Ish S")
